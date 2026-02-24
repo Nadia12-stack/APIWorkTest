@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+  </Folder>
+  <Project Path="APIWorkTest.BusinessLogicLayer/APIWorkTest.BusinessLogicLayer.csproj" Id="5a1656f6-543f-45dc-b77a-66dc67d23dc5" />
+  <Project Path="APIWorkTest.DataAccessLayer/APIWorkTest.DataAccessLayer.csproj" Id="7fd79e5d-ddae-4a3a-98b0-81e07aa02e19" />
+  <Project Path="APIWorkTest/APIWorkTest.PresentationLayer.csproj" />
+</Solution>

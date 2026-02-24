@@ -1,0 +1,6 @@
+@APIWorkTest.PresentationLayer_HostAddress = http://localhost:5290
+
+GET {{APIWorkTest.PresentationLayer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
