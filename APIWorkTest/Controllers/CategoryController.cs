@@ -1,4 +1,5 @@
-﻿using APIWorkTest.PresentationLayer.DataAccess;
+﻿using APIWorkTest.DataAccessLayer.Models;
+using APIWorkTest.PresentationLayer.DataAccess;
 using APIWorkTest.PresentationLayer.DTOs.Request;
 using APIWorkTest.PresentationLayer.DTOs.Response;
 using APIWorkTest.PresentationLayer.Models;
@@ -23,53 +24,51 @@ namespace APIWorkTest.PresentationLayer.Controllers
         [HttpGet()]
         public IActionResult GetAll()
         {
-            var Users = _context.category.ToList();
-            var user = Users.Adapt<List<ApplicationUserResponse>>();
-            return Ok(new { Message = "Added Successfully", user });
+            var categories = _context.category.ToList();
+            
+            return Ok(new { Message = "Added Category Successfully", categories });
         }
 
         [HttpPost()]
-        public async Task<IActionResult> Create(ApplicationUserRequest applicationUserRequest)
+        public async Task<IActionResult> Create(Category category)
         {
 
-            var Users = applicationUserRequest.Adapt<ApplicationUser>();
-                await _context.AddAsync(Users);
+                await _context.AddAsync(category);
             await _context.SaveChangesAsync();
 
 
-            return Ok("Creared Successfully");
+            return Ok("Creared category Successfully");
         }
 
         [HttpPatch("{id}")]
-        public IActionResult Edit(ApplicationUser user)
+        public IActionResult Edit(Category category)
         {
-            //I cannot use (user.Id=id) becouse i injected the ApplicationUser
-            //var users = _context.ApplicationUsers.Find( id);
-            if (user is not null)
+            
+            if (category is not null)
             {
-                
-                user.FullName = user.FullName;
-                user.Email = user.Email;
-                _context.Users.Update(user);
+
+                category.Name = category.Name;
+                category.Description = category.Description;
+                _context.category.Update(category);
                 _context.SaveChanges();
 
 
-                return Ok("Updating Successfully");
+                return Ok("Updating Category Successfully");
 
             }
             return BadRequest();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(ApplicationUser id)
+        public IActionResult Delete(Category id)
         {
 
-            //var Users = _context.Users.Find(id);
+            
             _context.Remove(id);
             _context.SaveChangesAsync();
 
 
-            return Ok("Deleted Successfully");
+            return Ok("Deleted Category Successfully");
         }
     }
 }
